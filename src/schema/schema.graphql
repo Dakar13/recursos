@@ -12,6 +12,24 @@ type Query {
     curso(curso: ID!): Curso!
 }
 
+type Mutation {
+    cursoNew(curso: CursoInput!): Curso!
+    modifCurso(curso: CursoInput!): Curso!
+    delCurso(id: ID!): Curso!
+}
+
+input CursoInput {
+    id: ID
+    title: String!
+    description: String!
+    clases: Int!
+    time: Float!
+    logo: String!
+    level: Nivel=TODOS
+    path: String!
+    teacher: String!
+}
+
 "Información de los estudiantes"
 type Estudiante {
     "identificado del estudiante"
