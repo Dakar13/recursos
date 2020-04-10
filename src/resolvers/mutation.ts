@@ -33,7 +33,33 @@ const mutation : IResolvers = {
                     path: '',
                     teacher: '',
                     reviews: []
-            };
+                };
+        },
+
+        modifCurso(__:void, { curso }): any {
+            const elementoExiste = _.findIndex(databases.cursos, function (o) {
+                return o.id === curso.id  
+            });
+                if (elementoExiste > -1 ){
+                    const valoraciones = databases.cursos[elementoExiste].reviews;
+                    curso.reviews = valoraciones;
+                    databases.cursos[elementoExiste] = curso;
+
+                    return curso;
+                }
+
+                return {
+                    id: '-1',
+                    title: `El registro con este titulo no existe`,
+                    description: '',
+                    clases: -1,
+                    time: 0.0,
+                    level: 'TODOS',
+                    logo: '',
+                    path: '',
+                    teacher: '',
+                    reviews: []
+                };
         }
     }
 }
