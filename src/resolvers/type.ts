@@ -22,7 +22,8 @@ const type : IResolvers = {
                 }
             });
             return listaEstudiantes;
-        }
+        },
+        path: parent => `https://www.udemy.com${parent.path}`
     }
 }
 
