@@ -17,6 +17,8 @@ const query : IResolvers = {
                 }
             }
             return resultado;
+        },cursos(): any {
+            return databases.cursos;
         }
     }
 }
