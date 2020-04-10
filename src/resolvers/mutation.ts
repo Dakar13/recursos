@@ -17,9 +17,23 @@ const mutation : IResolvers = {
                 teacher: curso.teacher,
                 reviews: []
             }
+                if (databases.cursos.filter(itemCurs => itemCurs.title === itemCurso.title).length === 0){
+                    databases.cursos.push(itemCurso);
+                    return itemCurso;
 
-            databases.cursos.push(itemCurso);
-            return itemCurso;
+                }
+                return {
+                    id: '-1',
+                    title: `El registro con este titulo ya existe`,
+                    description: '',
+                    clases: -1,
+                    time: 0.0,
+                    level: 'TODOS',
+                    logo: '',
+                    path: '',
+                    teacher: '',
+                    reviews: []
+            };
         }
     }
 }
