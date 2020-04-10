@@ -1,6 +1,7 @@
 import { IResolvers } from 'graphql-tools';
 import _ from 'lodash';
 import { databases } from '../data/data.store';
+import { cursorTo } from 'readline';
 
 const mutation : IResolvers = {
     Mutation: {
@@ -60,6 +61,28 @@ const mutation : IResolvers = {
                     teacher: '',
                     reviews: []
                 };
+        },
+
+        delCurso(__:void, { id }): any {
+            const borraCurso = _.remove(databases.cursos, function(curso) {
+                return curso.id === id;
+            });
+
+            if (borraCurso[0] === undefined) {
+                return {
+                    id: '-1',
+                    title: `El registro con ese ID, no existe`,
+                    description: '',
+                    clases: -1,
+                    time: 0.0,
+                    level: 'TODOS',
+                    logo: '',
+                    path: '',
+                    teacher: '',
+                    reviews: []
+                };
+            }
+            return borraCurso[0];
         }
     }
 }
