@@ -17,9 +17,28 @@ const query : IResolvers = {
                 }
             }
             return resultado;
-        },cursos(): any {
+        },
+        cursos(): any {
             return databases.cursos;
-        }
+        },
+        curso(__: void, { curso }): any {
+            const resultado = databases.cursos.filter(curso_ => curso_.id === curso) [0];
+            if (resultado === undefined) {
+                return {
+                    id: '-1',
+                    title: `No se ha encontrado el registro con el ID ${curso}`,
+                    description: '',
+                    clases: -1,
+                    time: 0.0,
+                    logo: '',
+                    level: 'TODOS',
+                    path: '',
+                    teacher: '',
+                    reviews: []
+                }
+            }
+            return resultado;
+        },
     }
 }
 
